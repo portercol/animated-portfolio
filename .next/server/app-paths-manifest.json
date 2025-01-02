@@ -1,7 +1,6 @@
 {
   "/page": "app/page.js",
+  "/slice-simulator/page": "app/slice-simulator/page.js",
   "/[uid]/page": "app/[uid]/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/projects/[uid]/page": "app/projects/[uid]/page.js",
   "/blog/[uid]/page": "app/blog/[uid]/page.js"
 }

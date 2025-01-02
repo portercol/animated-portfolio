@@ -16,6 +16,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/[uid]/page.js"
     ],
+    "/slice-simulator/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/slice-simulator/page.js"
+    ],
     "/projects/[uid]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
