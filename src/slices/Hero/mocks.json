@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"first_name": {
+				"__TYPE__": "FieldContent",
+				"value": "acres",
+				"type": "Text"
+			},
+			"last_name": {
+				"__TYPE__": "FieldContent",
+				"value": "simply",
+				"type": "Text"
+			},
+			"tag_line": {
+				"__TYPE__": "FieldContent",
+				"value": "youth",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

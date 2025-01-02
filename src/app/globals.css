@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.background-gradient {
+  background: radial-gradient(
+    ellipse at top,
+    #4778eb80 0%,
+    #00000000 50%,
+    #00000000 100%,
+  )
+}
+.background-gradient {
+  background: radial-gradient(#4778eb80 0%, #000);
+}
