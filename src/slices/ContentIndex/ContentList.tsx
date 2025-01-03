@@ -148,10 +148,10 @@ export default function ContentList({
           >
             <a
               href={`${urlPrefix}/${post.uid}`}
-              className="flex flex-col gap-2 items-center border-t border-t-slate-100 py-10  text-slate-200 md:flex-row md:justify-between"
+              className="flex flex-col gap-2 border-t border-t-slate-100 py-10  text-slate-200 md:flex-row md:justify-between"
               aria-label={post.data.title || ""}
             >
-              <div className="flex flex-col items-center md:items-start">
+              <div className="flex flex-col md:items-start">
                 <span className="text-3xl font-bold">{post.data.title}</span>
                 <div className="flex gap-3 text-cyan-600">
                   {post.tags.map((tag, index) => (
@@ -161,7 +161,7 @@ export default function ContentList({
                   ))}
                 </div>
               </div>
-              <span className="flex items-center gap-2 text-xl font-medium md:ml-0">
+              <span className="flex items-center gap-2 mt-2 text-xl font-medium decoration-cyan-600 decoration-4 hover:underline md:ml-0">
                 {viewMoreText} <MdArrowOutward />
               </span>
             </a>

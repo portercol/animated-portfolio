@@ -7,15 +7,16 @@ type ButtonProps = {
   linkField: LinkField,
   label: KeyTextField,
   showIcon?: boolean,
-  className?: string
+  className?: string,
+  onClick?: () => void
 }
 
-export default function Button({ linkField, label, showIcon = true, className }: ButtonProps) {
+export default function Button({ linkField, label, showIcon = true, className, onClick }: ButtonProps) {
   return (
     <PrismicNextLink field={linkField} className={clsx(
       "group relative flex w-fit items-center justify-center overflow-hidden rounded-md border-2 text-slate-800 border-slate-900 bg-slate-50  px-4 py-2 font-bold transition-transform ease-out  hover:scale-105",
       className,
-    )}>
+    )} onClick={onClick}>
       <span className={clsx(
         "absolute inset-0 z-0 h-full translate-x-[-100%] bg-cyan-500 transition-transform  duration-300 ease-in-out group-hover:translate-x-0",
       )}></span>

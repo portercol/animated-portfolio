@@ -1517,6 +1517,9 @@ video {
 .mt-10 {
   margin-top: 2.5rem;
 }
+.mt-2 {
+  margin-top: 0.5rem;
+}
 .mt-4 {
   margin-top: 1rem;
 }
@@ -1525,9 +1528,6 @@ video {
 }
 .mt-8 {
   margin-top: 2rem;
-}
-.ml-auto {
-  margin-left: auto;
 }
 .block {
   display: block;
@@ -1848,9 +1848,6 @@ video {
 .pt-14 {
   padding-top: 3.5rem;
 }
-.text-center {
-  text-align: center;
-}
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -1882,9 +1879,9 @@ video {
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.text-lg {
+.text-lg\/6 {
   font-size: 1.125rem;
-  line-height: 1.75rem;
+  line-height: 1.5rem;
 }
 .text-sm {
   font-size: 0.875rem;
@@ -1897,10 +1894,6 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-.text-lg\/6 {
-  font-size: 1.125rem;
-  line-height: 1.5rem;
 }
 .font-bold {
   font-weight: 700;
@@ -2007,6 +2000,12 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+.decoration-cyan-600 {
+  text-decoration-color: #0891b2;
+}
+.decoration-4 {
+  text-decoration-thickness: 4px;
+}
 .placeholder-gray-500::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(107 114 128 / var(--tw-placeholder-opacity));
@@ -2091,6 +2090,9 @@ video {
 .hover\:text-cyan-500:hover {
   --tw-text-opacity: 1;
   color: rgb(6 182 212 / var(--tw-text-opacity));
+}
+.hover\:underline:hover {
+  text-decoration-line: underline;
 }
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
@@ -2254,5 +2256,13 @@ video {
   .md\:text-9xl {
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .md\:underline {
+    text-decoration-line: underline;
+  }
+
+  .md\:hover\:underline:hover {
+    text-decoration-line: underline;
   }
 }
