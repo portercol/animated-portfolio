@@ -1,0 +1,35 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "sit",
+				"type": "Text"
+			},
+			"email": {
+				"__TYPE__": "FieldContent",
+				"value": "breathe",
+				"type": "Text"
+			},
+			"phone_number": {
+				"__TYPE__": "FieldContent",
+				"value": "goes",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Dolor veniam aute anim sint non tempor non minim tempor adipisicing sint sit ullamco proident nostrud. Cillum culpa mollit nulla in occaecat non ipsum quis qui exercitation eiusmod laborum consectetur."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
