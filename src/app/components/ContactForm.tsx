@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 
 type ContactFormProps = {
   className?: string;
@@ -19,7 +20,9 @@ export default function ContactForm({ className }: ContactFormProps) {
   });
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -54,10 +57,27 @@ export default function ContactForm({ className }: ContactFormProps) {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-      setSuccessMessage("Thank you for your message!");
-      setFormData({ name: "", email: "", message: "" });
-      setErrors({ name: "", email: "", message: "" });
+      emailjs
+        .send(
+          "service_26yxx36",
+          "template_e4rsktz",
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.message,
+          },
+          "npxGXTGZuzo1vlsD3"
+        )
+        .then(
+          () => {
+            setSuccessMessage("Thank you! Your message has been sent.");
+            setFormData({ name: "", email: "", message: "" });
+            setErrors({ name: "", email: "", message: "" });
+          },
+          (error) => {
+            console.error("Failed to send message:", error);
+          }
+        );
     }
   };
 
@@ -65,7 +85,10 @@ export default function ContactForm({ className }: ContactFormProps) {
     <div className={className}>
       <form onSubmit={handleSubmit} noValidate className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-300"
+          >
             Name
           </label>
           <input
@@ -85,7 +108,10 @@ export default function ContactForm({ className }: ContactFormProps) {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-300"
+          >
             Email
           </label>
           <input
@@ -105,7 +131,10 @@ export default function ContactForm({ className }: ContactFormProps) {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium text-gray-300"
+          >
             Message
           </label>
           <textarea
@@ -132,7 +161,9 @@ export default function ContactForm({ className }: ContactFormProps) {
         </button>
       </form>
       {successMessage && (
-        <p className="text-cyan-500 text-md font-medium my-2.5">{successMessage}</p>
+        <p className="text-cyan-500 text-md font-medium my-2.5">
+          {successMessage}
+        </p>
       )}
     </div>
   );

@@ -19,6 +19,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "@types/three": "^0.169.0",
     "clsx": "^2.1.1",
+    "emailjs-com": "^3.2.0",
     "gsap": "^3.12.5",
     "next": "14.2.14",
     "react": "^18.3.1",

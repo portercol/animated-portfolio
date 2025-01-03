@@ -2257,12 +2257,4 @@ video {
     font-size: 8rem;
     line-height: 1;
   }
-
-  .md\:underline {
-    text-decoration-line: underline;
-  }
-
-  .md\:hover\:underline:hover {
-    text-decoration-line: underline;
-  }
 }
