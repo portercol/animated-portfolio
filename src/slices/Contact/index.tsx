@@ -38,7 +38,7 @@ const Contact = ({ slice }: ContactProps): JSX.Element => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className="flex mt-6 justify-center">
           <ContactForm className="max-w-sm w-full" />
         </div>
       </div>
