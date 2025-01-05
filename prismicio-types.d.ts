@@ -233,7 +233,10 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type ProjectDocumentDataSlicesSlice = ImageBlockSlice | TextBlockSlice;
+type ProjectDocumentDataSlicesSlice =
+  | ViewAppButtonSlice
+  | ImageBlockSlice
+  | TextBlockSlice;
 
 /**
  * Content for Project documents
@@ -1073,6 +1076,61 @@ export type TextBlockSlice = prismic.SharedSlice<
   TextBlockSliceVariation
 >;
 
+/**
+ * Primary content in *ViewAppButton → Default → Primary*
+ */
+export interface ViewAppButtonSliceDefaultPrimary {
+  /**
+   * Button Text field in *ViewAppButton → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: view_app_button.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *ViewAppButton → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: view_app_button.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Default variation for ViewAppButton Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ViewAppButtonSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ViewAppButtonSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ViewAppButton*
+ */
+type ViewAppButtonSliceVariation = ViewAppButtonSliceDefault;
+
+/**
+ * ViewAppButton Shared Slice
+ *
+ * - **API ID**: `view_app_button`
+ * - **Description**: ViewAppButton
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ViewAppButtonSlice = prismic.SharedSlice<
+  "view_app_button",
+  ViewAppButtonSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1144,6 +1202,10 @@ declare module "@prismicio/client" {
       TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,
       TextBlockSliceDefault,
+      ViewAppButtonSlice,
+      ViewAppButtonSliceDefaultPrimary,
+      ViewAppButtonSliceVariation,
+      ViewAppButtonSliceDefault,
     };
   }
 }

@@ -11,4 +11,5 @@ export const components = {
   image_block: dynamic(() => import("./ImageBlock")),
   tech_list: dynamic(() => import("./TechList")),
   text_block: dynamic(() => import("./TextBlock")),
+  view_app_button: dynamic(() => import("./ViewAppButton")),
 };

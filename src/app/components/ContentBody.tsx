@@ -23,7 +23,6 @@ export default function ContentBody ({ page }: { page: Content.BlogPostDocument 
 
     const formattedDate = formatDate(page.data.date);
 
-
   return (
   <Bounded as="article" >
     <div className="rounded-2xl border-2 border-slate-800 bg-slate-800 px-4 py-10 md:px-8 md:py-20">
@@ -33,8 +32,13 @@ export default function ContentBody ({ page }: { page: Content.BlogPostDocument 
                 <span key={tag}>{tag}</span>
             ))}
         </div>
-        <p className="mt-6 border-b border-slate-600 text-xl font-medium text-slate-300">{formattedDate}</p>
-      <div className="prose prose-lg prose-invert mt-10 w-full max-w-none md:mt-18">
+        {page.type === "blog_post" && (
+          <p className="mt-6 border-b border-slate-600 text-xl font-medium text-slate-300">
+            {formattedDate}
+          </p>
+        )}
+        {/* <p className="mt-6 border-b border-slate-600 text-xl font-medium text-slate-300">{formattedDate}</p> */}
+      <div className="prose prose-lg prose-invert mt-8 w-full max-w-none md:mt-18">
 
       <SliceZone slices={page.data.slices} components={components} />
       </div>
