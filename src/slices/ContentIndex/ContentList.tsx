@@ -153,10 +153,11 @@ export default function ContentList({
             >
               <div className="flex flex-col md:items-start">
                 <span className="text-3xl font-bold">{post.data.title}</span>
-                <div className="flex gap-3 text-cyan-600">
+                <div className="flex flex-wrap gap-2 mt-2 text-cyan-600">
                   {post.tags.map((tag, index) => (
                     <span key={index} className="text-lg/6 font-bold">
                       {tag}
+                      {index < post.tags.length - 1 && " | "}
                     </span>
                   ))}
                 </div>
