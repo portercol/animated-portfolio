@@ -1565,9 +1565,6 @@ video {
 .min-h-screen {
   min-height: 100vh;
 }
-.w-2\/4 {
-  width: 50%;
-}
 .w-\[220px\] {
   width: 220px;
 }
@@ -2193,10 +2190,6 @@ video {
 
   .md\:hidden {
     display: none;
-  }
-
-  .md\:w-full {
-    width: 100%;
   }
 
   .md\:w-2\/4 {
