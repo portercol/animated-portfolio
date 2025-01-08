@@ -31,13 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-slate-900 text-slate-100">
       <head>
-        <link rel="icon" href="/portfolio.ico" />
+      <link rel="icon" href="/portfolio.ico" />
       </head>
       <body className={clsx(urbanist.className, "relative min-h-screen")}>
         <Header />
         {children}
-        {/* <div className="absolute inset-0 -z-50 max-h-screen background-gradient" /> */}
-        {/* <div className="pointer-events-none absolute inset-0 -z-40 h-full bg-[url('../../public/images/noisetexture.jpg')] opacity-20 mix-blend-soft-light"></div> */}
         <Footer />
       </body>
       <PrismicPreview repositoryName={repositoryName} />
