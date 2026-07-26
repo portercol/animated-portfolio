@@ -5,6 +5,8 @@ import {
   prismicWriteClient,
 } from "@/lib/prismic-write";
 
+import config from "../../slicemachine.config.json";
+
 interface MarkInvoicePaidOptions {
   invoiceUid: string;
   stripeSessionId: string;
@@ -14,10 +16,23 @@ export async function markInvoicePaid({
   invoiceUid,
   stripeSessionId,
 }: MarkInvoicePaidOptions): Promise<void> {
+  console.log("Starting Prismic invoice update", {
+    invoiceUid,
+    stripeSessionId,
+    repositoryName: config.repositoryName,
+  });
+
   const document = await prismicWriteClient.getByUID(
     "invoice",
     invoiceUid,
   );
+
+  console.log("Found Prismic invoice", {
+    id: document.id,
+    uid: document.uid,
+    status: document.data.status,
+    repositoryName: config.repositoryName,
+  });
 
   if (document.data.status === "Paid") {
     console.log(
@@ -42,12 +57,23 @@ export async function markInvoicePaid({
     `Mark invoice ${invoiceUid} as paid`,
   );
 
-  await prismicWriteClient.migrate(migration, {
+  console.log("Submitting Prismic migration", {
+    invoiceUid,
+    documentId: document.id,
+  });
+
+  const result = await prismicWriteClient.migrate(migration, {
     reporter(event) {
       console.log(
         `[Prismic payment update: ${stripeSessionId}]`,
-        event,
+        JSON.stringify(event),
       );
     },
+  });
+
+  console.log("Prismic migration finished", {
+    invoiceUid,
+    stripeSessionId,
+    result,
   });
 }
