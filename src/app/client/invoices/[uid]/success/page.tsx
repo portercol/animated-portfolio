@@ -60,8 +60,7 @@ export default async function InvoiceSuccessPage({
     .retrieve(sessionId)
     .catch(() => null);
 
-  const belongsToInvoice =
-    session?.metadata?.invoiceUid === params.uid;
+  const belongsToInvoice = session?.metadata?.invoiceUid === params.uid;
 
   const paymentSucceeded =
     session?.status === "complete" &&
@@ -81,8 +80,8 @@ export default async function InvoiceSuccessPage({
           </h1>
 
           <p className="mt-4 text-slate-300">
-            No charge has been confirmed for this invoice. Return to the
-            invoice to review its payment status.
+            No charge has been confirmed for this invoice. Return to the invoice
+            to review its payment status.
           </p>
 
           <Link
@@ -96,11 +95,9 @@ export default async function InvoiceSuccessPage({
     );
   }
 
-  const invoiceNumber =
-    session.metadata?.invoiceNumber ?? params.uid;
+  const invoiceNumber = session.metadata?.invoiceNumber ?? params.uid;
 
-  const customerEmail =
-    session.customer_details?.email;
+  const customerEmail = session.customer_details?.email;
 
   const formattedTotal = formatCurrency(session.amount_total);
 
@@ -134,19 +131,15 @@ export default async function InvoiceSuccessPage({
 
         <p className="mt-4 text-slate-300">
           Your payment for invoice{" "}
-          <span className="font-semibold text-white">
-            {invoiceNumber}
-          </span>{" "}
-          has been confirmed.
+          <span className="font-semibold text-white">{invoiceNumber}</span> has
+          been confirmed.
         </p>
 
         <div className="mt-8 rounded-2xl border border-slate-700/70 bg-slate-900/70 p-6 text-left">
           <dl className="space-y-4">
             <div className="flex items-center justify-between gap-4">
               <dt className="text-sm text-slate-400">Invoice</dt>
-              <dd className="font-medium text-slate-100">
-                {invoiceNumber}
-              </dd>
+              <dd className="font-medium text-slate-100">{invoiceNumber}</dd>
             </div>
 
             {formattedTotal ? (
@@ -160,9 +153,7 @@ export default async function InvoiceSuccessPage({
 
             {customerEmail ? (
               <div className="flex items-start justify-between gap-4 border-t border-slate-800 pt-4">
-                <dt className="text-sm text-slate-400">
-                  Confirmation email
-                </dt>
+                <dt className="text-sm text-slate-400">Confirmation email</dt>
                 <dd className="max-w-[65%] break-words text-right text-sm font-medium text-slate-100">
                   {customerEmail}
                 </dd>
@@ -171,12 +162,21 @@ export default async function InvoiceSuccessPage({
           </dl>
         </div>
 
-        <Link
-          href={`/client/invoices/${params.uid}`}
-          className="mt-8 inline-flex rounded-xl border border-slate-600 px-6 py-3 font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-300"
-        >
-          Return to invoice
-        </Link>
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+          <a
+            href={`/client/invoices/${params.uid}/pdf?session_id=${sessionId}`}
+            className="inline-flex items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-5 py-3 text-sm font-semibold text-emerald-300 transition hover:border-emerald-400/50 hover:bg-emerald-400/15"
+          >
+            Download PDF Invoice
+          </a>
+
+          <Link
+            href="/"
+            className="inline-flex rounded-xl border border-slate-600 px-6 py-3 font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-300"
+          >
+            Return Home
+          </Link>
+        </div>
       </div>
     </SuccessPageShell>
   );
@@ -186,9 +186,7 @@ interface SuccessPageShellProps {
   children: React.ReactNode;
 }
 
-function SuccessPageShell({
-  children,
-}: SuccessPageShellProps) {
+function SuccessPageShell({ children }: SuccessPageShellProps) {
   return (
     <section className="background-gradient flex min-h-screen items-center px-5 py-16 text-slate-100 sm:px-8">
       <div className="mx-auto w-full max-w-3xl">

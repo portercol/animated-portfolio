@@ -1,5 +1,5 @@
 import { renderToBuffer } from "@react-pdf/renderer";
-
+import { stripe } from "@/lib/stripe";
 import { mapInvoice } from "@/lib/invoices";
 import { createClient } from "@/prismicio";
 
@@ -26,6 +26,9 @@ export async function GET(
     request: Request,
     { params }: InvoicePdfRouteContext,
 ) {
+    const { searchParams } = new URL(request.url);
+    const sessionId = searchParams.get("session_id");
+
     const client = createClient();
 
     const document = await client
@@ -38,7 +41,24 @@ export async function GET(
 
     const invoice = mapInvoice(document);
 
-    if (invoice.status !== "Paid") {
+    let canDownloadPdf = invoice.status === "Paid";
+
+    if (!canDownloadPdf && sessionId) {
+        const session = await stripe.checkout.sessions
+            .retrieve(sessionId)
+            .catch(() => null);
+
+        const belongsToInvoice =
+            session?.metadata?.invoiceUid === params.uid;
+
+        canDownloadPdf =
+            !!session &&
+            session.status === "complete" &&
+            session.payment_status === "paid" &&
+            belongsToInvoice;
+    }
+
+    if (!canDownloadPdf) {
         return Response.json(
             {
                 error: "This invoice must be paid before its PDF can be downloaded.",

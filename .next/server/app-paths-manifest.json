@@ -1,7 +1,6 @@
 {
-  "/api/stripe/webhook/route": "app/api/stripe/webhook/route.js",
-  "/api/stripe/checkout/route": "app/api/stripe/checkout/route.js",
-  "/[uid]/page": "app/[uid]/page.js",
+  "/page": "app/page.js",
+  "/client/invoices/[uid]/success/page": "app/client/invoices/[uid]/success/page.js",
   "/client/invoices/[uid]/page": "app/client/invoices/[uid]/page.js",
-  "/client/invoices/[uid]/success/page": "app/client/invoices/[uid]/success/page.js"
+  "/client/invoices/[uid]/pdf/route": "app/client/invoices/[uid]/pdf/route.js"
 }
