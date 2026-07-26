@@ -47,9 +47,18 @@ export default async function InvoicePage({ params }: InvoicePageProps) {
             {invoice.status === "Outstanding" ? (
               <PaymentButton invoiceUid={invoice.uid} />
             ) : (
-              <p className="text-sm font-medium text-emerald-300">
-                This invoice has been paid.
-              </p>
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-sm font-medium text-emerald-300">
+                  This invoice has been paid.
+                </p>
+
+                <a
+                  href={`/client/invoices/${invoice.uid}/pdf`}
+                  className="inline-flex items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-5 py-3 text-sm font-semibold text-emerald-300 transition hover:border-emerald-400/50 hover:bg-emerald-400/15"
+                >
+                  Download PDF invoice
+                </a>
+              </div>
             )}
           </div>
         </div>

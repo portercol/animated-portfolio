@@ -14,6 +14,7 @@
     "@prismicio/next": "^1.7.0",
     "@prismicio/react": "^2.9.0",
     "@prismicio/types": "^0.2.9",
+    "@react-pdf/renderer": "^4.5.1",
     "@react-three/drei": "^9.114.0",
     "@react-three/fiber": "^8.17.9",
     "@stripe/stripe-js": "^9.12.0",
