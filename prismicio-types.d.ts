@@ -167,6 +167,140 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Invoice → Line Items*
+ */
+export interface InvoiceDocumentDataLineItemsItem {
+  /**
+   * Description field in *Invoice → Line Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: invoice.line_items[].description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Hours field in *Invoice → Line Items*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: invoice.line_items[].hours
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  hours: prismic.NumberField;
+
+  /**
+   * Rate field in *Invoice → Line Items*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: invoice.line_items[].rate
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  rate: prismic.NumberField;
+}
+
+/**
+ * Content for Invoice documents
+ */
+interface InvoiceDocumentData {
+  /**
+   * Invoice Number field in *Invoice*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: invoice.invoice_number
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  invoice_number: prismic.KeyTextField;
+
+  /**
+   * Client Name field in *Invoice*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: invoice.client_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  client_name: prismic.KeyTextField;
+
+  /**
+   * Project Title field in *Invoice*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: invoice.project_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  project_title: prismic.KeyTextField;
+
+  /**
+   * Issue Date field in *Invoice*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: invoice.issue_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  issue_date: prismic.DateField;
+
+  /**
+   * Due Date Label field in *Invoice*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: invoice.due_date_label
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  due_date_label: prismic.KeyTextField;
+
+  /**
+   * Status field in *Invoice*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Outstanding
+   * - **API ID Path**: invoice.status
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  status: prismic.SelectField<"Outstanding" | "Paid", "filled">;
+
+  /**
+   * Line Items field in *Invoice*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: invoice.line_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  line_items: prismic.GroupField<Simplify<InvoiceDocumentDataLineItemsItem>>;
+}
+
+/**
+ * Invoice document from Prismic
+ *
+ * - **API ID**: `invoice`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type InvoiceDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<InvoiceDocumentData>,
+    "invoice",
+    Lang
+  >;
+
 type PageDocumentDataSlicesSlice =
   | ContactSlice
   | ExperienceSlice
@@ -491,6 +625,7 @@ export type SettingsDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | BlogPostDocument
   | HomepageDocument
+  | InvoiceDocument
   | PageDocument
   | ProjectDocument
   | SettingsDocument;
@@ -1158,6 +1293,9 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      InvoiceDocument,
+      InvoiceDocumentData,
+      InvoiceDocumentDataLineItemsItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
